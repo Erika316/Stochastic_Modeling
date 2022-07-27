@@ -155,7 +155,7 @@ beta = seq(0, 1, by = 0.01)
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(beta)){
   sensibilidad1[s] = funcion(r, K, beta[s], eta, kappa, sigma1, sigma2)[1]
@@ -175,12 +175,12 @@ plot(beta, sensibilidad2, col = "orange", type = "l", lwd = 1,
 sensibilidad3 = NULL
 sensibilidad4 = NULL 
 r = seq(0, 1, by = 0.01)
-K = 64697.861
+K = 64000.861
 beta = 0.00202330 
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(r)){
   sensibilidad3[s] = funcion(r[s], K, beta, eta, kappa, sigma1, sigma2)[1]
@@ -201,7 +201,7 @@ beta = 0.00202330
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(K)){
   sensibilidad5[s] = funcion(r, K[s], beta, eta, kappa, sigma1, sigma2)[1]
@@ -218,12 +218,12 @@ plot(K, sensibilidad6, col = "brown", type = "l", lwd = 1,
 sensibilidad7 = NULL
 sensibilidad8 = NULL 
 r = 0.08917645
-K = 64697.861
+K = 64000.861
 beta = 0.00202330 
 eta = seq(0, 10000, by = 1)
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(eta)){
   sensibilidad7[s] = funcion(r, K, beta, eta[s], kappa, sigma1, sigma2)[1]
@@ -239,12 +239,12 @@ plot(eta, sensibilidad8, col = "brown", type = "l", lwd = 1,
 sensibilidad9 = NULL
 sensibilidad10 = NULL 
 r = 0.08917645
-K = 64697.861
+K = 64000.861
 beta = 0.00202330 
 eta = 3564.19
 kappa = seq(0, 1, 0.01)
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(kappa)){
   sensibilidad9[s] = funcion(r, K, beta, eta, kappa[s], sigma1, sigma2)[1]
@@ -260,12 +260,12 @@ plot(kappa, sensibilidad10, col = "brown", type = "l", lwd = 1,
 sensibilidad11 = NULL
 sensibilidad12 = NULL  
 r = 0.08917645
-K = 64697.861
+K = 64000.861
 beta = 0.00202330 
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = seq(0, 1, 0.01)
-sigma2 = sqrt(2.080035)
+sigma2 = sqrt(0.000196)
 
 for(s in 1:length(sigma1)){
   sensibilidad11[s] = funcion(r, K, beta, eta, kappa, sigma1[s], sigma2)[1]
@@ -281,7 +281,7 @@ plot(sigma1, sensibilidad12, col = "brown", type = "l", lwd = 1,
 sensibilidad13 = NULL
 sensibilidad14= NULL 
 r = 0.08917645
-K = 64697.861
+K = 64000.861
 beta = 0.00202330 
 eta = 3564.19
 kappa = 0.00003890321
