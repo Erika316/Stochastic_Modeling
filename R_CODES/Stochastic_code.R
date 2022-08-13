@@ -7,9 +7,9 @@ library(BB)
 x = rep(NA,2)
 sistema = function(x){
   f = rep(NA, 2)
-  f[1] = (-1/((0.1589271)^2))*(-0.089645*Y+(0.089645/64000.861)*XY+0.00202330*Y2)
-  -(1/x[1])*(0.00202330*X2 - x[2]*X)
-  f[2] = -0.00202330*X + length(na.omit(Base_Datos[, 4]))*x[2]
+  f[1] = (-1/((0.1589271)^2))*(-0.089645*Y+(0.089645/64000.861)*XY+0.023016*Y2)
+  -(1/x[1])*(0.023016*X2 - x[2]*X)
+  f[2] = -0.023016*X + length(na.omit(Base_Datos[, 4]))*x[2]
   f
 }
 
@@ -20,7 +20,7 @@ dat=data.frame(x= Base_Datos[1:length(na.omit(Base_Datos[, 4]))-1, 4],
                y= Base_Datos[1:length(na.omit(Base_Datos[, 2]))-1, 2], 
                z = Base_Datos[2:length(na.omit(Base_Datos[, 2])), 2])
 min.RSS <- function(data, par) {
-  with(data, sum((y + (0.00202330*x*y - par[1]*y) + 
+  with(data, sum((y + (0.023016*x*y - par[1]*y) + 
                     par[2]*rnorm(1, 0, 1) - z)^2))
 }
 
@@ -33,7 +33,7 @@ dat=data.frame(x= Base_Datos[1:length(na.omit(Base_Datos[, 4]))-1, 4],
                y= Base_Datos[1:length(na.omit(Base_Datos[, 2]))-1, 2], 
                z = Base_Datos[2:length(na.omit(Base_Datos[, 2])), 2])
 min.RSS <- function(data, par) {
-  with(data, sum((y + (0.00202330*x*y - par[1]*y) + 
+  with(data, sum((y + (0.023016*x*y - par[1]*y) + 
                     par[2]*rnorm(1, 0, 1) - z)^2))
 }
 
@@ -43,7 +43,7 @@ dat=data.frame(x= Base_Datos[1:length(na.omit(Base_Datos[, 4]))-1, 4],
                y= Base_Datos[1:length(na.omit(Base_Datos[, 2]))-1, 2], 
                z = Base_Datos[2:length(na.omit(Base_Datos[, 2])), 2])
 min.RSS1 <- function(data, par) {
-  with(data, sum((y + par[3]*((0.00202330*x*y - par[1]*y)) + 
+  with(data, sum((y + par[3]*((0.023016*x*y - par[1]*y)) + 
                     par[2]*rnorm(1, 0, 1) - z)^2))
 }
 
@@ -53,7 +53,7 @@ dat=data.frame(x= Base_Datos[1:length(na.omit(Base_Datos[, 4]))-1, 4],
                y= Base_Datos[1:length(na.omit(Base_Datos[, 2]))-1, 2], 
                z = Base_Datos[2:length(na.omit(Base_Datos[, 2])), 2])
 min.RSS1 <- function(data, par) {
-  with(data, sum((y + par[1]*((0.00202330*x*y - 3564.19*y) + 
+  with(data, sum((y + par[1]*((0.023016*x*y - 3564.19*y) + 
                                 2.080035*rnorm(1, 0, 1)) - z)^2))
 }
 
@@ -153,9 +153,8 @@ r = 0.08917645
 K = 64000.861
 beta = seq(0, 1, by = 0.01) 
 eta = 3564.19
-kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(beta)){
   sensibilidad1[s] = funcion(r, K, beta[s], eta, kappa, sigma1, sigma2)[1]
@@ -176,15 +175,15 @@ sensibilidad3 = NULL
 sensibilidad4 = NULL 
 r = seq(0, 1, by = 0.01)
 K = 64000.861
-beta = 0.00202330 
+beta = 0.023016 
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(r)){
-  sensibilidad3[s] = funcion(r[s], K, beta, eta, kappa, sigma1, sigma2)[1]
-  sensibilidad4[s] = funcion(r[s], K, beta, eta, kappa, sigma1, sigma2)[2]
+  sensibilidad3[s] = funcion(r[s], K, beta, eta, sigma1, sigma2)[1]
+  sensibilidad4[s] = funcion(r[s], K, beta, eta, sigma1, sigma2)[2]
 }
 
 par(mfrow = c(1, 2))
@@ -197,15 +196,15 @@ sensibilidad5 = NULL
 sensibilidad6 = NULL 
 r = 0.08917645
 K = seq(0, 100000, by = 10) 
-beta = 0.00202330 
+beta = 0.023016
 eta = 3564.19
 kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(K)){
-  sensibilidad5[s] = funcion(r, K[s], beta, eta, kappa, sigma1, sigma2)[1]
-  sensibilidad6[s] = funcion(r, K[s], beta, eta, kappa, sigma1, sigma2)[2]
+  sensibilidad5[s] = funcion(r, K[s], beta, eta, sigma1, sigma2)[1]
+  sensibilidad6[s] = funcion(r, K[s], beta, eta, sigma1, sigma2)[2]
 }
 
 par(mfrow = c(1, 2))
@@ -219,15 +218,14 @@ sensibilidad7 = NULL
 sensibilidad8 = NULL 
 r = 0.08917645
 K = 64000.861
-beta = 0.00202330 
+beta = 0.023016 
 eta = seq(0, 10000, by = 1)
-kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(eta)){
-  sensibilidad7[s] = funcion(r, K, beta, eta[s], kappa, sigma1, sigma2)[1]
-  sensibilidad8[s] = funcion(r, K, beta, eta[s], kappa, sigma1, sigma2)[2]
+  sensibilidad7[s] = funcion(r, K, beta, eta[s], sigma1, sigma2)[1]
+  sensibilidad8[s] = funcion(r, K, beta, eta[s],sigma1, sigma2)[2]
 }
 
 par(mfrow = c(1, 2))
@@ -240,15 +238,15 @@ sensibilidad9 = NULL
 sensibilidad10 = NULL 
 r = 0.08917645
 K = 64000.861
-beta = 0.00202330 
+beta = 0.023016 
 eta = 3564.19
 kappa = seq(0, 1, 0.01)
 sigma1 = sqrt(0.1589271)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(kappa)){
-  sensibilidad9[s] = funcion(r, K, beta, eta, kappa[s], sigma1, sigma2)[1]
-  sensibilidad10[s] = funcion(r, K, beta, eta, kappa[s], sigma1, sigma2)[2]
+  sensibilidad9[s] = funcion(r, K, beta, eta, sigma1, sigma2)[1]
+  sensibilidad10[s] = funcion(r, K, beta, eta, sigma1, sigma2)[2]
 }
 
 par(mfrow = c(1, 2))
@@ -261,15 +259,14 @@ sensibilidad11 = NULL
 sensibilidad12 = NULL  
 r = 0.08917645
 K = 64000.861
-beta = 0.00202330 
+beta = 0.023016 
 eta = 3564.19
-kappa = 0.00003890321
 sigma1 = seq(0, 1, 0.01)
-sigma2 = sqrt(0.000196)
+sigma2 = sqrt(0.014326)
 
 for(s in 1:length(sigma1)){
-  sensibilidad11[s] = funcion(r, K, beta, eta, kappa, sigma1[s], sigma2)[1]
-  sensibilidad12[s] = funcion(r, K, beta, eta, kappa, sigma1[s], sigma2)[2]
+  sensibilidad11[s] = funcion(r, K, beta, eta, sigma1[s], sigma2)[1]
+  sensibilidad12[s] = funcion(r, K, beta, eta, sigma1[s], sigma2)[2]
 }
 
 par(mfrow = c(1, 2))
@@ -282,15 +279,14 @@ sensibilidad13 = NULL
 sensibilidad14= NULL 
 r = 0.08917645
 K = 64000.861
-beta = 0.00202330 
+beta = 0.023016 
 eta = 3564.19
-kappa = 0.00003890321
 sigma1 = sqrt(0.1589271)
 sigma2 = seq(0, 1, by = 0.01)
 
 for(s in 1:length(sigma2)){
-  sensibilidad11[s] = funcion(r, K, beta, eta, kappa, sigma1, sigma2[s])[1]
-  sensibilidad12[s] = funcion(r, K, beta, eta, kappa, sigma1, sigma2[s])[2]
+  sensibilidad11[s] = funcion(r, K, beta, eta, sigma1, sigma2[s])[1]
+  sensibilidad12[s] = funcion(r, K, beta, eta, sigma1, sigma2[s])[2]
 }
 
 par(mfrow = c(1, 2))
